@@ -1,5 +1,6 @@
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
@@ -14,7 +15,7 @@ suspend fun main() {
     }
 
     val job = GlobalScope.launch {
-        flow.collect {
+        flow.buffer().collect {
             delay(2000)
             println(it)
         }
